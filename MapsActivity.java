@@ -48,11 +48,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mConditionRef1 = mRootRef.child("Indira Nagar");
-    DatabaseReference mConditionRef2 = mRootRef.child("IIT M, Research Park");
-    DatabaseReference mConditionRef3 = mRootRef.child("S2 Thyegaraja");
-    DatabaseReference mConditionRef4 = mRootRef.child("Thiruvanmayur");
-    DatabaseReference mConditionRef5 = mRootRef.child("Ascendas");
+    DatabaseReference mConditionRef1 = mRootRef.child("SSN Main Gate");
+    DatabaseReference mConditionRef2 = mRootRef.child("Boys Hostel IV");
+    DatabaseReference mConditionRef3 = mRootRef.child("EEE block");
+    DatabaseReference mConditionRef4 = mRootRef.child("Humanities block");
+    DatabaseReference mConditionRef5 = mRootRef.child("Main Canteen");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 try {
                     data1 = String.valueOf(dataSnapshot.getValue(Long.class));
                 } catch (Exception exc) {
-                    System.out.println("Something else bro");
+                    System.out.println("Something else");
                 }
             }
 
@@ -85,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     data2 = String.valueOf(dataSnapshot.getValue(Long.class));
                 }
                 catch (Exception exc) {
-                    System.out.println("Something else bro");
+                    System.out.println("Something else");
                 }
             }
 
@@ -101,7 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     data4 = String.valueOf(dataSnapshot.getValue(Long.class));
                 }
                 catch (Exception exc) {
-                    System.out.println("Something else bro");
+                    System.out.println("Something else");
                 }
             }
 
@@ -116,7 +116,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 try {
                     data5 = String.valueOf(dataSnapshot.getValue(Long.class));
                 } catch (Exception exc) {
-                    System.out.println("Something else bro");
+                    System.out.println("Something else");
                 }
             }
 
@@ -129,10 +129,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void calculateShortestPath(View view){
           if(data3.compareTo(data5)<0){
-              shortMessage("Take Path via S2 Thyegaraja");
+              shortMessage("Take Path via EEE block");
           }
           else{
-              shortMessage("Take Path via Ascendas");
+              shortMessage("Take Path via Main Canteen");
           }
     }
 
@@ -148,7 +148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         setupGoogleMapScreenSettings(googleMap);
-        DirectionsResult results = getDirectionsDetails("Indira Nagar","IIT M, Research Park",TravelMode.DRIVING);
+        DirectionsResult results = getDirectionsDetails("SSN Main Gate","Boys Hostel IV",TravelMode.DRIVING);
         if (results != null) {
             addPolyline(results, googleMap);
         }
@@ -158,9 +158,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 try{
 
                     String text1 = String.valueOf(dataSnapshot.getValue(Long.class));
-                    LatLng indnagar = new LatLng(12.9960496,80.2492729);
-                    mMap.addMarker(new MarkerOptions().position(indnagar).title("Indira Nagar: "+data1));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(indnagar));
+                    LatLng maingate = new LatLng(12.9960496,80.2492729);
+                    mMap.addMarker(new MarkerOptions().position(maingate).title("SSN Main Gate: "+data1));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(maingate));
                 }
                 catch (Exception exc){
                     exc.printStackTrace();
@@ -178,9 +178,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 try{
 
                     String text2 = String.valueOf(dataSnapshot.getValue(Long.class));
-                    LatLng iitm = new LatLng(12.9901947,80.2396882);
-                    mMap.addMarker(new MarkerOptions().position(iitm).title("IITM Research Park: " + data2));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(iitm));
+                    LatLng hostel = new LatLng(12.9901947,80.2396882);
+                    mMap.addMarker(new MarkerOptions().position(hostel).title("Boys Hostel IV: " + data2));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(hostel));
                 }
                 catch (Exception exc){
                     exc.printStackTrace();
